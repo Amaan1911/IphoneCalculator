@@ -5,27 +5,27 @@ const IphoneCalculator = () => {
   const [value, setValue] = useState('');
 
   function handleClick(val) {
-    setValue(prev => prev + val);
+    setValue(prev => (prev === '0' ? val : prev + val));
   }
-
+  
   function handleClear() {
-    setValue('');
+    setValue('0');
   }
 
   function handleCalculate() {
     try {
-      // Evaluate safely
+    
       setValue(eval(value).toString());
     } catch (error) {
-      setValue('Error');
+      setValue('Invalid Output');
     }
   }
 
   return (
-    <div className='h-[550px] w-[300px] border rounded shadow-lg bg-black text-white'>
+    <div className='h-[550px] w-[300px] border rounded-2xl shadow-lg bg-black text-white'>
 
       <div className='border-b h-[200px] flex items-end justify-end px-5 text-3xl font-bold'>
-        <p>{value || '0'}</p>
+        <p className='text-right' >{value || '0'}</p>
       </div>
 
       <div className='grid grid-cols-4 gap-2 p-3'>
